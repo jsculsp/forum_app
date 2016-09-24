@@ -17,6 +17,8 @@ def index():
 @main.route('/<int:id>')
 def show(id):
     m = Model.query.get(id)
+    if m is None:
+        abort(404)
     return render_template('node.html', node=m)
 
 
@@ -31,6 +33,8 @@ def add():
 @main.route('/edit/<int:id>')
 def edit(id):
     m = Model.query.get(id)
+    if m is None:
+        abort(404)
     return render_template('node_edit.html', node=m)
 
 

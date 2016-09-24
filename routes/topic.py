@@ -32,6 +32,8 @@ def add():
 @main.route('/edit/<int:id>')
 def edit(id):
     m = Model.query.get(id)
+    if m is None:
+        abort(404)
     return render_template('topic_edit.html', topic=m)
 
 

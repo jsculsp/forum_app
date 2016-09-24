@@ -13,7 +13,6 @@ from routes.topic import main as routes_topic
 
 
 app = Flask(__name__)
-db.init_app(app)
 db_path = 'todo.sqlite'
 manager = Manager(app)
 
@@ -28,6 +27,7 @@ def configure_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     app.secret_key = 'hard_to_guess'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}'.format(db_path)
+    db.init_app(app)
     register_routes(app)
 
 

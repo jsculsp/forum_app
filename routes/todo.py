@@ -24,6 +24,8 @@ def add():
 @main.route('/edit/<int:id>')
 def edit(id):
     t = Model.query.get(id)
+    if t is None:
+        abort(404)
     return render_template('todo_edit.html', todo=t)
 
 
